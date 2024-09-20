@@ -1,3 +1,5 @@
+import React from 'react';
+
 const SearchInput = ({searchQuery,setSearchQuery})=>{
     return(
         <div>
