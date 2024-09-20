@@ -12,7 +12,7 @@ const ToDoContainer =() =>
     const handleAddToDo = (title) => {
       setToDoList((prevState) => [
         ...prevState,
-        { id: Math.random(), title },
+        { id:  Date.now(), title },
       ]);
     };
 
