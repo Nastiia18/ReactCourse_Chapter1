@@ -2,21 +2,23 @@ import React, { useState } from 'react';
 import ToDoList from './ToDoList.jsx';
 import ToDoForm from './ToDoForm.jsx';
 import SearchInput from './SearchInput.jsx';
+import useGetAllToDo from '../hooks/useGetAllToDo';
 
 const ToDoContainer = () => {
-  const [toDoList, setToDoList] = useState([]);
+  const { isLoading, data, error, setData } = useGetAllToDo();
+
   const [searchQuery, setSearchQuery] = useState('');
   const [inputValue, setInputValue] = useState('');
 
   const handleAddToDo = (title) => {
-    setToDoList((prevState) => [...prevState, { id: Date.now(), title }]);
+    setData((prevState) => [...prevState, { id: Date.now(), title }]);
   };
 
   const handleDelete = (id) => {
-    setToDoList((prevState) => prevState.filter((item) => item.id !== id));
+    setData((prevState) => prevState.filter((item) => item.id !== id));
   };
 
-  const filteredToDoList = toDoList.filter((item) =>
+  const filteredToDoList = data.filter((item) =>
     item.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -26,6 +28,9 @@ const ToDoContainer = () => {
     handleAddToDo(inputValue);
     setInputValue('');
   };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div>
