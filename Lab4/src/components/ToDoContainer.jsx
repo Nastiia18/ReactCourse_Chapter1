@@ -5,7 +5,7 @@ import SearchInput from './SearchInput.jsx';
 import useGetAllToDo from '../hooks/useGetAllToDo';
 
 const ToDoContainer = () => {
-  const { isLoading, data, error, setData } = useGetAllToDo();
+  const { isLoading, data, setData } = useGetAllToDo();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [inputValue, setInputValue] = useState('');
@@ -30,7 +30,6 @@ const ToDoContainer = () => {
   };
 
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div>
