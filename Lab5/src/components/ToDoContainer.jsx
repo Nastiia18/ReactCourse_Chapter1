@@ -31,20 +31,17 @@ const ToDoContainer = () => {
   };
 
   return (
-    <Loading isLoading={isLoading}>
-      <div>
-        <SearchInput
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-        />
-        <ToDoForm
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-          handleSubmit={handleSubmit}
-        />
+    <div>
+      <SearchInput searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <ToDoForm
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        handleSubmit={handleSubmit}
+      />
+      <Loading isLoading={isLoading}>
         <ToDoList toDoList={filteredToDoList} handleDelete={handleDelete} />
-      </div>
-    </Loading>
+      </Loading>
+    </div>
   );
 };
 
